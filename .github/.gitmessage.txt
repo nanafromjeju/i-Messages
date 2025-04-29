@@ -1,0 +1,11 @@
+# type: subject (#issue number)
+ 
+# --- COMMIT END ---
+#   feat    : 기능 추가 작업
+#   fix     : 버그 수정 작업
+#   refactor: 코드 수정 작업
+#   style   : 스타일 작업
+#   docs    : 문서화 작업
+#   test    : 테스트 작업
+#   chore   : 기타 변경사항 (빌드 부분 혹은 패키지 매니저 수정사항)
+# ------------------
