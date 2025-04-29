@@ -1,19 +1,13 @@
-import { useState } from "react";
+import { ChakraProvider } from "@chakra-ui/react";
+import { BrowserRouter as Router, Routes } from "react-router-dom";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
-      <h1 className="text-3xl font-bold mb-4">i-Messages Chat App</h1>
-      <p className="mb-4">Real-time messaging application</p>
-      <button
-        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        onClick={() => setCount((count) => count + 1)}
-      >
-        Count: {count}
-      </button>
-    </div>
+    <ChakraProvider>
+      <Router>
+        <Routes />
+      </Router>
+    </ChakraProvider>
   );
 }
 
