@@ -1,0 +1,16 @@
+{
+  "name": "i-messages",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "web": "yarn workspace @i-messages/web dev",
+    "web:dev": "yarn workspace @i-messages/web dev",
+    "build:web": "yarn workspace @i-messages/web build",
+    "shared": "yarn workspace @i-messages/shared build"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  }
+}
