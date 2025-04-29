@@ -1,11 +1,12 @@
-import { Box, Container, Heading } from "@chakra-ui/react";
+import { Container } from "@chakra-ui/react";
+import BaseButton from "../components/common/BaseButton";
+import Header from "../components/layout/Header";
 
 const Home = () => {
   return (
     <Container maxW="container.xl" py={8}>
-      <Box>
-        <Heading>채팅 홈</Heading>
-      </Box>
+      <Header />
+      <BaseButton />
     </Container>
   );
 };
