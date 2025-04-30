@@ -1,5 +1,3 @@
-import BaseAvatar from "../common/BaseAvatar";
-
 interface ChatHeaderProps {
   avatar: React.ReactNode;
   name: string;
@@ -8,7 +6,7 @@ interface ChatHeaderProps {
 const ChatHeader = ({ avatar, name }: ChatHeaderProps) => {
   return (
     <div>
-      {avatar ? avatar : <BaseAvatar />}
+      {avatar ? avatar : ""}
       {name}
     </div>
   );
