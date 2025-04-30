@@ -2,10 +2,12 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { ROUTES } from "./constants/routes";
 import ChatRoom from "./pages/ChatRoom";
 import Home from "./pages/Home";
+import SignIn from "./pages/SignIn";
 
 const AppRoutes = () => {
   return (
     <Routes>
+      <Route path={ROUTES.SIGN_IN} element={<SignIn />} />
       <Route path={ROUTES.HOME} element={<Home />} />
       <Route path={ROUTES.CHAT_ROOM} element={<ChatRoom />} />
       <Route path="*" element={<Navigate to="/" replace />} />
