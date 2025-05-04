@@ -1,6 +1,6 @@
 export const ROUTES = {
   SIGN_IN: "/",
-  HOME: "/home",
-  CHAT_ROOM: "/home/chat/:roomId",
+  LIST: "/list",
+  CHAT: "/list/chat",
   chatRoomPath: (roomId: string) => `/chat/${roomId}`,
 };

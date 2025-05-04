@@ -1,1 +1,3 @@
+.env
+packages/*/.env
 node_modules/
