@@ -4,7 +4,7 @@ import { Room } from "../../../shared/src/api/types";
 import { useChatRooms } from "../../../shared/src/hooks/useChatRooms";
 
 const List = () => {
-  const { data, isLoading, isError, error } = useChatRooms();
+  const { data } = useChatRooms();
   console.log({ data });
   const rooms = data?.data;
 
