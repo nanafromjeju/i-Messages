@@ -3,7 +3,12 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "packages/lib/utils": ["./packages/lib/utils/src/index.ts"],
+      "packages/shared/*": ["./packages/shared/src/*"],
+      "../../../shared/src/hooks/useChatRooms": [
+        "./packages/shared/src/hooks/useChatRooms"
+      ]
     }
   },
   "include": ["src/**/*"],
