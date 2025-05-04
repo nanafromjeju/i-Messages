@@ -7,7 +7,7 @@ const SignIn = () => {
       <h1>i-Messages</h1>
       <Input placeholder="ID" />
       <Input placeholder="Password" />
-      <Button variant="outline">Button</Button>
+      <Button>Button</Button>
     </div>
   );
 };
