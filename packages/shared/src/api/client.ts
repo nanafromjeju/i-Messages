@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 
-const API_URL = process.env.API_URL || "http://localhost:3000/api";
+const API_URL = "http://13.125.89.9:8080/api";
 
 export class ApiClient {
   private client: AxiosInstance;
