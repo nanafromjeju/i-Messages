@@ -12,38 +12,37 @@ const Chat = () => {
 
     // sendMessage(newMessage);
     //   setNewMessage("");
-    // };
-
-    return (
-      <div>
-        {connected ? '🟢 연결됨' : '🔴 연결 중...'}
-        <div>
-          {messages.length === 0 ? (
-            <p>아직 메시지가 없습니다.</p>
-          ) : (
-            <ul>
-              {messages.map((msg, index) => (
-                <li key={index}>
-                  <p>{msg.content}</p>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-        <Input
-          type="text"
-          value={newMessage}
-          onChange={e => setNewMessage(e.target.value)}
-          onKeyDown={e => e.key === 'Enter' && handleSendMessage()}
-          placeholder="메시지를 입력하세요..."
-          disabled={!connected}
-        />
-        <Button onClick={handleSendMessage} disabled={!connected}>
-          전송
-        </Button>
-      </div>
-    );
   };
+
+  return (
+    <div>
+      {connected ? '🟢 연결됨' : '🔴 연결 중...'}
+      <div>
+        {messages.length === 0 ? (
+          <p>아직 메시지가 없습니다.</p>
+        ) : (
+          <ul>
+            {messages.map((msg, index) => (
+              <li key={index}>
+                <p>{msg.content}</p>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+      <Input
+        type="text"
+        value={newMessage}
+        onChange={e => setNewMessage(e.target.value)}
+        onKeyDown={e => e.key === 'Enter' && handleSendMessage()}
+        placeholder="메시지를 입력하세요..."
+        disabled={!connected}
+      />
+      <Button onClick={handleSendMessage} disabled={!connected}>
+        전송
+      </Button>
+    </div>
+  );
 };
 
 export default Chat;
