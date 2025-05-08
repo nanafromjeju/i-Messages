@@ -7,7 +7,7 @@ import { useCreateRoom } from '../../../shared/src/hooks/useCreateRoom';
 
 const List = () => {
   const { data } = useChatRooms();
-  const [roomName, setRoomName] = useState('new');
+  const [roomName] = useState('new');
   const createRoomMutation = useCreateRoom();
 
   const rooms = data?.data;
