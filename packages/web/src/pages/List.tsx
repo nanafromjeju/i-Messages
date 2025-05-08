@@ -1,12 +1,20 @@
-import { Button } from "@/components/common/ui/button";
-import Header from "@/components/layout/Header";
-import { Room } from "../../../shared/src/api/types";
-import { useChatRooms } from "../../../shared/src/hooks/useChatRooms";
+import { Button } from '@/components/common/ui/button';
+import Header from '@/components/layout/Header';
+import { useState } from 'react';
+import { Room } from '../../../shared/src/api/types';
+import { useChatRooms } from '../../../shared/src/hooks/useChatRooms';
+import { useCreateRoom } from '../../../shared/src/hooks/useCreateRoom';
 
 const List = () => {
   const { data } = useChatRooms();
-  console.log({ data });
+  const [roomName] = useState('new');
+  const createRoomMutation = useCreateRoom();
+
   const rooms = data?.data;
+
+  const handleCreateRoom = () => {
+    createRoomMutation.mutate(roomName);
+  };
 
   return (
     <div>
@@ -22,7 +30,9 @@ const List = () => {
           <p>채팅방이 없습니다.</p>
         )}
       </div>
-      <Button>Button</Button>
+      <Button onClick={handleCreateRoom} disabled={createRoomMutation.isPending}>
+        {createRoomMutation.isPending ? '생성 중...' : '채팅방 생성'}
+      </Button>
     </div>
   );
 };

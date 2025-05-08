@@ -13,92 +13,75 @@ interface ChatMessage {
 const API_URL = 'http://13.125.89.9:8080';
 
 export const useChat = (roomId?: string) => {
-  const [client, setClient] = useState<Client | null>(null);
+  const [stompClient, setStompClient] = useState<Client | null>(null);
   const [connected, setConnected] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
-    const stompClient = new Client({
-      webSocketFactory: () => new SockJS(`${API_URL}/ws/chat`),
-      debug: function (str) {
-        console.log(str);
-      },
-      reconnectDelay: 5000,
-      heartbeatIncoming: 4000,
-      heartbeatOutgoing: 4000,
-    });
+    const connectSocket = () => {
+      const socket = new SockJS(`${API_URL}/ws/chat`);
+      const client = new Client({
+        webSocketFactory: () => socket,
+        debug: str => {
+          console.log(str);
+        },
+        reconnectDelay: 5000,
+        heartbeatIncoming: 4000,
+        heartbeatOutgoing: 4000,
+      });
 
-    stompClient.onConnect = frame => {
-      console.log('STOMP 연결 성공:', frame);
-      setConnected(true);
+      client.onConnect = frame => {
+        setConnected(true);
+        console.log('Connected: ' + frame);
 
-      if (roomId) {
-        const subscription = stompClient.subscribe(`/sub/chat/${roomId}`, message => {
-          try {
-            const receivedMessage = JSON.parse(message.body) as ChatMessage;
-            console.log('메시지 수신:', receivedMessage);
-            setMessages(prev => [...prev, receivedMessage]);
-          } catch (e) {
-            console.error('메시지 파싱 오류:', e);
-          }
+        client.subscribe(`/sub/chat/${roomId}`, message => {
+          const receivedMessage = JSON.parse(message.body);
+          setMessages(prevMessages => [...prevMessages, receivedMessage]);
         });
+      };
 
-        console.log(`채팅방 ${roomId} 구독 성공:`, subscription);
-      }
+      client.onStompError = frame => {
+        console.error('Broker reported error: ' + frame.headers['message']);
+        console.error('Additional details: ' + frame.body);
+      };
+
+      client.activate();
+      setStompClient(client);
     };
 
-    stompClient.onStompError = frame => {
-      console.error('STOMP 에러:', frame.headers['message']);
-      console.error('추가 정보:', frame.body);
-      setConnected(false);
-    };
-
-    stompClient.onWebSocketClose = event => {
-      console.log('WebSocket 연결 종료:', event);
-      setConnected(false);
-    };
-
-    stompClient.onWebSocketError = event => {
-      console.error('WebSocket 에러:', event);
-    };
-
-    console.log('STOMP 연결 시작...');
-    stompClient.activate();
-    setClient(stompClient);
+    connectSocket();
 
     return () => {
-      console.log('STOMP 연결 해제...');
-      if (stompClient.active) {
+      if (stompClient) {
         stompClient.deactivate();
       }
-      setClient(null);
     };
   }, [roomId]);
 
-  const sendMessage = useCallback(
-    (content: string) => {
-      if (!client || !client.active || !roomId) {
-        console.log('메시지 전송 실패: 연결되지 않음');
-        return false;
-      }
+  const sendMessage = useCallback(() => {
+    if (stompClient && message) {
+      stompClient.publish({
+        destination: '/pub/chat',
+        body: JSON.stringify({
+          roomId: roomId,
+          content: message,
+          sender: 'User',
+          timestamp: new Date().toISOString(),
+        }),
+      });
 
-      try {
-        client.publish({
-          destination: '/pub/chat/',
-          body: JSON.stringify({
-            roomId,
-            content,
-          }),
-        });
-        console.log('메시지 전송 성공');
-        return true;
-      } catch (error) {
-        console.error('메시지 전송 오류:', error);
-        return false;
-      }
-    },
-    [client, roomId]
-  );
+      setMessage('');
+    }
+  }, [stompClient, message, roomId]);
 
-  return { connected, messages, sendMessage };
+  return {
+    connected,
+    messages,
+    message,
+    setMessage,
+    sendMessage,
+  };
 };
+
+export default useChat;
