@@ -9,6 +9,13 @@ export default {
       fontFamily: {
         primary: ['Pretendard', 'sans-serif'],
       },
+      fontWeight: {
+        light: 400,
+        regular: 500,
+        semibold: 600,
+        bold: 700,
+        extrabold: 800,
+      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
