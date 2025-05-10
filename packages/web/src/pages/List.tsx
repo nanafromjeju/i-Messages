@@ -23,14 +23,7 @@ const List = () => {
     <div>
       <Header />
       <Rooms rooms={rooms} />
-
-      <CreateButton onClick={() => {}} />
-
-      {/* <CreateModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        isLoading={createRoomMutation.isPending}
-      /> */}
+      <CreateButton onClick={handleCreateRoom} />
     </div>
   );
 };
