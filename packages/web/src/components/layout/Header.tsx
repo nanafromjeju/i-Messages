@@ -1,12 +1,25 @@
-import { Input } from "../common/ui/input";
+import { Input } from '../common/ui/input';
 
 const Header = () => {
   return (
-    <div>
-      <h1 className="font-bold mb-18" style={{ fontSize: "2.25rem" }}>
+    <div style={{ backgroundColor: '#F9F9F9', padding: '16px' }}>
+      <h1
+        style={{
+          color: '#222222',
+          fontWeight: 'bold',
+          marginBottom: '10px',
+        }}
+      >
         Messages
       </h1>
-      <Input />
+      <Input
+        style={{
+          backgroundColor: '#E6E6E7',
+          border: 'none',
+          width: '100%',
+          height: '36px',
+        }}
+      />
     </div>
   );
 };
