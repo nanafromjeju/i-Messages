@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Room } from '../../../shared/src/api/types';
 import { useChatRooms } from '../../../shared/src/hooks/useChatRooms';
 import { useCreateRoom } from '../../../shared/src/hooks/useCreateRoom';
+import '../../../shared/styles/globals.css';
 
 const List = () => {
   const { data } = useChatRooms();
@@ -30,6 +31,7 @@ const List = () => {
           <p>채팅방이 없습니다.</p>
         )}
       </div>
+
       <Button onClick={handleCreateRoom} disabled={createRoomMutation.isPending}>
         {createRoomMutation.isPending ? '생성 중...' : '채팅방 생성'}
       </Button>
