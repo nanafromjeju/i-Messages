@@ -1,0 +1,14 @@
+@import './fonts.css';
+
+.font-primary {
+  font-family: 'Pretendard', sans-serif;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

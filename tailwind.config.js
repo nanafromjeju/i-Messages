@@ -10,11 +10,11 @@ export default {
         primary: ['Pretendard', 'sans-serif'],
       },
       fontWeight: {
-        light: 400,
-        regular: 500,
+        light: 300,
+        normal: 400,
+        medium: 500,
         semibold: 600,
         bold: 700,
-        extrabold: 800,
       },
       borderRadius: {
         lg: 'var(--radius)',
