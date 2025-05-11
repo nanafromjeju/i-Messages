@@ -1,20 +1,15 @@
 import { Button } from '../common/ui/button';
 
-interface CreateButtonProps {
-  onClick: () => void;
-}
-
-const CreateButton = ({ onClick }: CreateButtonProps) => {
+const SignInButton = () => {
   return (
     <div
       style={{
         display: 'flex',
         justifyContent: 'center',
-        padding: '40px',
+        padding: '20px',
       }}
     >
       <Button
-        onClick={onClick}
         style={{
           backgroundColor: '#007AFF',
           color: '#ffffff',
@@ -26,10 +21,10 @@ const CreateButton = ({ onClick }: CreateButtonProps) => {
           cursor: 'pointer',
         }}
       >
-        <p style={{ fontSize: '16px' }}>방 생성</p>
+        <p style={{ fontSize: '16px' }}>로그인</p>
       </Button>
     </div>
   );
 };
 
-export default CreateButton;
+export default SignInButton;

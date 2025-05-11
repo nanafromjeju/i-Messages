@@ -1,6 +1,6 @@
 import { Input } from '../common/ui/input';
 
-const Header = () => {
+const ListHeader = () => {
   return (
     <div style={{ backgroundColor: '#F9F9F9', padding: '16px' }}>
       <h1
@@ -24,4 +24,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default ListHeader;

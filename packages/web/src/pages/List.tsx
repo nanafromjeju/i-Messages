@@ -1,6 +1,6 @@
 import CreateButton from '@/components/chat/CreateButton';
 import Rooms from '@/components/chat/Rooms';
-import Header from '@/components/layout/Header';
+import ListHeader from '@/components/layout/ListHeader';
 import { Room } from '../../../shared/src/api/types';
 import { useChatRooms } from '../../../shared/src/hooks/useChatRooms';
 import { useCreateRoom } from '../../../shared/src/hooks/useCreateRoom';
@@ -21,7 +21,7 @@ const List = () => {
 
   return (
     <div>
-      <Header />
+      <ListHeader />
       <Rooms rooms={rooms} />
       <CreateButton onClick={handleCreateRoom} />
     </div>

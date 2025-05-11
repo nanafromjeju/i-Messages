@@ -1,13 +1,13 @@
-import { Button } from "../components/common/ui/button";
-import { Input } from "../components/common/ui/input";
+import SignInButton from '@/components/layout/SignInButton';
+import SignInContent from '@/components/layout/SignInContent';
+import SignInHeader from '@/components/layout/SignInHeader';
 
 const SignIn = () => {
   return (
     <div>
-      <h1>i-Messages</h1>
-      <Input placeholder="ID" />
-      <Input placeholder="Password" />
-      <Button>Button</Button>
+      <SignInHeader />
+      <SignInContent />
+      <SignInButton />
     </div>
   );
 };
